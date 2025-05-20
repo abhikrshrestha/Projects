@@ -1,0 +1,124 @@
+#Funtion to automatically compute the CAPM and Fama French 5 factor:
+options(warn = -1) #Turning off warning messages globally
+#options(warn = 0)
+library(tidyquant)
+library(quantmod)
+PricingModel = function(ticker,beg_date,end_date){
+  
+  #Generate the monthly stock return (log)
+  #Calculate daily stock return
+  pricedata = getSymbols(ticker, from = beg_date,
+                         to = end_date,warnings = FALSE,
+                         auto.assign = FALSE)
+  
+  pricedata = as.data.frame(pricedata)
+  n = nrow(pricedata) #number of rows
+  m = ncol(pricedata) #number of columns
+  for (i in 1:(n-1)){
+    pricedata[i+1,m+1] = log(pricedata[i+1,m]/pricedata[i,m])
+  }
+  colnames(pricedata)[m+1] = c("Daily.Return")
+  pricedata = pricedata[-1,]
+  
+  #Generate YYYYMM
+  dailyreturn = cbind(rownames(pricedata),pricedata[,7])
+  dailyreturn[,1] = format(as.Date(dailyreturn[,1]),'%Y%m%d')
+  dailyreturn = as.data.frame(dailyreturn)
+  dailyreturn[,3] = substr(format(dailyreturn[,1]),1,6)
+  dailyreturn[,2] = round(as.numeric(dailyreturn[,2]),digits = 6)
+  colnames(dailyreturn)[1:3] = c("Date","logret","YYYYMM")
+  
+  #Cacluate monthly return
+  monthlyret = aggregate(dailyreturn$logret,by=list(Category = dailyreturn$YYYYMM),FUN = sum)
+  colnames(monthlyret) = c("YYYYMM","Monthly Log Return")
+  
+  #Merge fama-french model variables
+  ff5data = read.csv("F-F_Research_Data_5_Factors_2x3.csv",header = TRUE,skip = 3, sep = ",")
+  momdata = read.csv("F-F_Momentum_Factor.csv",header = TRUE,skip = 13, sep = ",")
+  
+  ff5data[,1] = as.numeric(ff5data[,1])
+  ff5data = subset(ff5data,ff5data[,1] >= 196307 & ff5data[,1] <= 202312 )
+  colnames(ff5data)[1:2] = c("YYYYMM","MKT-RF")
+  
+  momdata[,1] = as.numeric(momdata[,1])
+  momdata = subset(momdata,momdata[,1] >= 196307 & momdata[,1] <= 202312 )
+  colnames(momdata)[1] = c("YYYYMM")
+  
+  ffmdata = merge(ff5data,momdata,by = "YYYYMM" )
+  
+  estdata = merge(ffmdata,monthlyret,by="YYYYMM")
+  
+  #lapply function: Apply a Function over a List or Vector
+  estdata[,2:9] = lapply(estdata[,2:9],as.numeric)
+  estdata[,2:8] = estdata[,2:8]/100 #Change percentages to decimals
+  
+  
+  #Estimation based on CAPM model
+  x = estdata[,2]
+  y = estdata[,9] - estdata[,7]
+  model1 = lm(y~x)
+  est1 = as.matrix(model1$coefficients)
+  colnames(est1) = c("CAPM")
+  print(est1)
+  
+  
+  #Estimation based on Fama-French 5 factor model
+  x5 = as.matrix(cbind(estdata[,2:6]))
+  model5 = lm(y~x5)
+  est5 = as.matrix(model5$coefficients)
+  colnames(est5) = c("5-factor FF Model")
+  print(est5)
+}
+
+#Example AMD:
+#pre covid
+AMDstimates = PricingModel("AMD","2018-01-01","2019-01-31")
+
+#during covid
+amdestimates = PricingModel("AMD","2020-01-01","2021-06-30") 
+
+#post covid
+AMDstimates = PricingModel("AMD","2021-07-01","2022-01-31")
+
+
+#CAPM Model Beta
+
+library(tidyquant)
+library(quantmod)
+
+#R program to get beta
+#Upgrade our return function
+dretplus = function(ticker,beg_date,end_date){
+  pricedata = getSymbols(ticker, from = beg_date,
+                         to = end_date,warnings = FALSE,
+                         auto.assign = FALSE) 
+  pricedata=as.data.frame(pricedata)
+  n = nrow(pricedata) #number of rows
+  m = ncol(pricedata) #number of columns
+  for (i in 1:(n-1)){
+    pricedata[i+1,m+1] = log(pricedata[i+1,m]/pricedata[i,m])
+  }
+  colnames(pricedata)[m+1] = c("Daily.Return")
+  pricedata[-1,m+1]
+}
+y = dretplus("INTC","2010-01-01","2010-12-31")
+x = dretplus("^GSPC","2010-01-01","2010-12-31")
+
+beta = function(ticker,beg_date,end_date){
+  y = dretplus(ticker,beg_date,end_date)
+  x = dretplus("^GSPC",beg_date,end_date)
+  capmreg = lm(y~x)
+  betap = as.numeric(capmreg$coefficients[2])
+  cat("The beta coefficient in the CAPM is",betap)
+}
+
+
+#Example:
+#pre covid
+beta("INTC","2018-01-01","2019-01-31") 
+
+#during covid
+beta("INTC","2020-01-01","2021-06-30") 
+
+#post covid
+beta("INTC","2021-07-01","2022-01-31")
