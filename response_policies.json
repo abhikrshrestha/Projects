@@ -1,0 +1,702 @@
+{
+  "schema_version": 1,
+  "description": "Reviewed response-only validation and keyed collection policies for guided tests. These policies validate approved value shapes and align only exact reviewed row keys; they do not supply request inputs or relax unmatched rows or structural XML differences.",
+  "operations": {
+    "wsCustomers.GetCustomer": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerResponse[1]/GetCustomerResult[1]/CanLogin[1]",
+          "label": "Can Login",
+          "require": "BOOLEAN",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerResponse[1]/GetCustomerResult[1]/CustomerID[1]",
+          "label": "Customer ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerResponse[1]/GetCustomerResult[1]/CustomerName[1]",
+          "label": "Customer Name",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerResponse[1]/GetCustomerResult[1]/LoginPassword[1]",
+          "label": "Login Password",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerResponse[1]/GetCustomerResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "require": "NON_EMPTY",
+          "when_different": "WARNING"
+        }
+      ],
+      "database_fields": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerResponse[1]/GetCustomerResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "schema": "dbo",
+          "table": "tblCustomer",
+          "column": "TimeLine",
+          "reviewed": true
+        }
+      ],
+      "notes": "Timeline may differ between suitable records but must be populated."
+    },
+    "wsCustomers.GetCustomerByName": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerByNameResponse[1]/GetCustomerByNameResult[1]/CanLogin[1]",
+          "label": "Can Login",
+          "require": "BOOLEAN",
+          "when_different": "MISMATCH"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerByNameResponse[1]/GetCustomerByNameResult[1]/CustomerID[1]",
+          "label": "Customer ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerByNameResponse[1]/GetCustomerByNameResult[1]/DatabaseID[1]",
+          "label": "Database ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerByNameResponse[1]/GetCustomerByNameResult[1]/RecordID[1]",
+          "label": "Record ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "database_fields": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerByNameResponse[1]/GetCustomerByNameResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "schema": "dbo",
+          "table": "tblCustomer",
+          "column": "TimeLine",
+          "reviewed": true
+        }
+      ],
+      "notes": "Database-local customer identifiers may differ but must remain positive integers. A CanLogin permission change remains a critical mismatch even when both values are valid booleans."
+    },
+    "wsCustomers.GetCustomerByRemoteID": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "database_fields": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerByRemoteIDResponse[1]/GetCustomerByRemoteIDResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "schema": "dbo",
+          "table": "tblCustomer",
+          "column": "TimeLine",
+          "reviewed": true
+        }
+      ],
+      "notes": "The reviewed Timeline API field mapping is diagnostic only and never changes comparison status."
+    },
+    "wsCustomers.GetCustomerID": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetCustomerIDResponse[1]/GetCustomerIDResult[1]",
+          "label": "Customer ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "The returned customer database key may differ across database copies, but both lanes must return a positive integer."
+    },
+    "wsSuppliers.GetSupplier": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "database_fields": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetSupplierResponse[1]/GetSupplierResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "schema": "dbo",
+          "table": "tblSupplier",
+          "column": "TimeLine",
+          "reviewed": true
+        }
+      ],
+      "notes": "The reviewed Timeline API field mapping is diagnostic only and never changes comparison status."
+    },
+    "wsSuppliers.GetSupplierByName": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "database_fields": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetSupplierByNameResponse[1]/GetSupplierByNameResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "schema": "dbo",
+          "table": "tblSupplier",
+          "column": "TimeLine",
+          "reviewed": true
+        }
+      ],
+      "notes": "The reviewed Timeline API field mapping is diagnostic only and never changes comparison status."
+    },
+    "wsSuppliers.GetSupplierByRemoteID": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "database_fields": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetSupplierByRemoteIDResponse[1]/GetSupplierByRemoteIDResult[1]/TimeLine[1]",
+          "label": "Timeline",
+          "schema": "dbo",
+          "table": "tblSupplier",
+          "column": "TimeLine",
+          "reviewed": true
+        }
+      ],
+      "notes": "The reviewed Timeline API field mapping is diagnostic only and never changes comparison status."
+    },
+    "wsDepartment.GetAllDepartmentsAsDataSet": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Departments",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetAllDepartmentsAsDataSetResponse[1]/GetAllDepartmentsAsDataSetResult[1]/diffgram[1]/NewDataSet[1]/Table1[*]",
+          "key_paths": [
+            "DepartmentID[1]",
+            "Department[1]",
+            "DeptCode[1]"
+          ],
+          "duplicate_key_policy": "REJECT",
+          "allow_empty_key_values": true
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetAllDepartmentsAsDataSetResponse[1]/GetAllDepartmentsAsDataSetResult[1]/diffgram[1]/NewDataSet[1]/Table1[*]/Inactive[1]",
+          "label": "Inactive",
+          "require": "BOOLEAN",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetAllDepartmentsAsDataSetResponse[1]/GetAllDepartmentsAsDataSetResult[1]/diffgram[1]/NewDataSet[1]/Table1[*]/siteID[1]",
+          "label": "Site ID",
+          "require": "INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "Rows align only on the exact DepartmentID, Department, and DeptCode tuple. Under COMPATIBILITY, valid unmatched rows remain visible as business-data drift; duplicate, invalid, or ambiguous keys remain red. Inactive accepts SOAP boolean lexical variants and siteID remains an integer, including zero."
+    },
+    "wsDepartment.GetSiteDepartmentsAsDataSet": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Site departments",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetSiteDepartmentsAsDataSetResponse[1]/GetSiteDepartmentsAsDataSetResult[1]/diffgram[1]/NewDataSet[1]/Table1[*]",
+          "key_paths": [
+            "Department[1]",
+            "DeptCode[1]"
+          ],
+          "duplicate_key_policy": "REJECT",
+          "allow_empty_key_values": true,
+          "allow_missing_key_values": true
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetSiteDepartmentsAsDataSetResponse[1]/GetSiteDepartmentsAsDataSetResult[1]/diffgram[1]/NewDataSet[1]/Table1[*]/Inactive[1]",
+          "label": "Inactive",
+          "require": "BOOLEAN",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "Rows align only on the exact Department and DeptCode tuple. Under COMPATIBILITY, valid unmatched rows remain visible as business-data drift; duplicate, invalid, or ambiguous keys remain red. Inactive may use true/false or 1/0 lexical forms; paired row content remains exact unless a field has its own reviewed rule."
+    },
+    "wsProducts.GetProduct": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductResponse[1]/GetProductResult[1]/Cost[1]",
+          "label": "Cost",
+          "require": "DECIMAL",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductResponse[1]/GetProductResult[1]/Productid[1]",
+          "label": "Product ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductResponse[1]/GetProductResult[1]/ProductName[1]",
+          "label": "Product Name",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "Cost formatting may differ (for example 0 versus 0.0000), but both values must be decimal. A selected product must have a positive ID and a populated name."
+    },
+    "wsProducts.GetProductByName": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByNameResponse[1]/GetProductByNameResult[1]/Cost[1]",
+          "label": "Cost",
+          "require": "DECIMAL",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByNameResponse[1]/GetProductByNameResult[1]/Productid[1]",
+          "label": "Product ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByNameResponse[1]/GetProductByNameResult[1]/ProductName[1]",
+          "label": "Product Name",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "The returned product may have environment-specific formatting or data, but its cost, ID, and name must retain their expected shape."
+    },
+    "wsProducts.GetProductByRemoteID": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByRemoteIDResponse[1]/GetProductByRemoteIDResult[1]/Category[1]/Pcid[1]",
+          "label": "Category PCID",
+          "require": "INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByRemoteIDResponse[1]/GetProductByRemoteIDResult[1]/CategoryID[1]",
+          "label": "Category ID",
+          "require": "INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByRemoteIDResponse[1]/GetProductByRemoteIDResult[1]/Cost[1]",
+          "label": "Cost",
+          "require": "DECIMAL",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByRemoteIDResponse[1]/GetProductByRemoteIDResult[1]/Productid[1]",
+          "label": "Product ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductByRemoteIDResponse[1]/GetProductByRemoteIDResult[1]/ProductName[1]",
+          "label": "Product Name",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "Category database keys may legitimately differ across database copies, including zero when no category is assigned, so they are validated as integers rather than positive integers."
+    },
+    "wsProducts.GetProductCategoriesAsList": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Product categories",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetProductCategoriesAsListResponse[1]/GetProductCategoriesAsListResult[1]/QTProductCategory[*]",
+          "key_paths": [
+            "Category[1]",
+            "Description[1]",
+            "Inactive[1]",
+            "Isdeleted[1]"
+          ],
+          "duplicate_key_policy": "MATCH_OCCURRENCES",
+          "allow_empty_key_values": true,
+          "allow_missing_key_values": true
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductCategoriesAsListResponse[1]/GetProductCategoriesAsListResult[1]/QTProductCategory[*]/Pcid[1]",
+          "label": "Category ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "The complete non-ID row content is the exact multiset key. Duplicate occurrences may pair because Pcid is the only remaining field and is explicitly validated as an environment-local positive integer. Under the COMPATIBILITY profile, reviewed unmatched rows are visible business-data drift; invalid or ambiguous keys remain red."
+    },
+    "wsProducts.GetProductCategoriesAsTable": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Product category table rows",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetProductCategoriesAsTableResponse[1]/GetProductCategoriesAsTableResult[1]/diffgram[1]/DocumentElement[1]/tblProductCategory[*]",
+          "key_paths": [
+            "category[1]",
+            "description[1]",
+            "inactive[1]",
+            "isDeleted[1]"
+          ],
+          "duplicate_key_policy": "MATCH_OCCURRENCES",
+          "allow_empty_key_values": true,
+          "allow_missing_key_values": true
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductCategoriesAsTableResponse[1]/GetProductCategoriesAsTableResult[1]/diffgram[1]/DocumentElement[1]/tblProductCategory[*]/pcid[1]",
+          "label": "Category ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "The table's exact category, description, and state fields form a multiset key, including reviewed missing optional fields, while pcid is validated only as an environment-local positive integer. Under the COMPATIBILITY profile, reviewed unmatched rows are visible business-data drift; schema/type differences remain red."
+    },
+    "wsProducts.GetProductDocsByPartNum": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Product documents",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByPartNumResponse[1]/GetProductDocsByPartNumResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]",
+          "key_paths": [
+            "docNum[1]"
+          ],
+          "duplicate_key_policy": "REJECT",
+          "allow_empty_key_values": false
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByPartNumResponse[1]/GetProductDocsByPartNumResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/documentID[1]",
+          "label": "Document ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByPartNumResponse[1]/GetProductDocsByPartNumResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/documentRevisionID[1]",
+          "label": "Document Revision ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByPartNumResponse[1]/GetProductDocsByPartNumResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/dateApproved[1]",
+          "label": "Date Approved",
+          "require": "DATETIME",
+          "when_different": "MISMATCH",
+          "datetime_comparison": {
+            "mode": "UTC_INSTANT",
+            "tolerance_seconds": 1,
+            "naive_timezone": "REJECT",
+            "compatibility_action": "DATA_DRIFT",
+            "sentinels": [
+              {
+                "name": "NOT_SET_MAX_DATE",
+                "local_date": "9999-12-31"
+              }
+            ]
+          }
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByPartNumResponse[1]/GetProductDocsByPartNumResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/PublishDate[1]",
+          "label": "Publish Date",
+          "require": "DATETIME",
+          "when_different": "MISMATCH",
+          "datetime_comparison": {
+            "mode": "UTC_INSTANT",
+            "tolerance_seconds": 1,
+            "naive_timezone": "REJECT",
+            "compatibility_action": "DATA_DRIFT"
+          }
+        }
+      ],
+      "notes": "Rows align by unique, populated docNum. Database IDs may differ but must remain positive. The runner compares timestamps as UTC instants with a one-second tolerance; dateApproved also recognizes the reviewed NOT_SET_MAX_DATE sentinel. Under COMPATIBILITY, larger valid date differences and reviewed unmatched rows remain visible as business-data drift; invalid dates, schema/type differences, and ambiguous keys remain red."
+    },
+    "wsProducts.GetProductDocsByProductID": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Product documents",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByProductIDResponse[1]/GetProductDocsByProductIDResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]",
+          "key_paths": [
+            "docNum[1]"
+          ],
+          "duplicate_key_policy": "REJECT",
+          "allow_empty_key_values": false
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByProductIDResponse[1]/GetProductDocsByProductIDResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/documentID[1]",
+          "label": "Document ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByProductIDResponse[1]/GetProductDocsByProductIDResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/documentRevisionID[1]",
+          "label": "Document Revision ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByProductIDResponse[1]/GetProductDocsByProductIDResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/dateApproved[1]",
+          "label": "Date Approved",
+          "require": "DATETIME",
+          "when_different": "MISMATCH",
+          "datetime_comparison": {
+            "mode": "UTC_INSTANT",
+            "tolerance_seconds": 1,
+            "naive_timezone": "REJECT",
+            "compatibility_action": "DATA_DRIFT",
+            "sentinels": [
+              {
+                "name": "NOT_SET_MAX_DATE",
+                "local_date": "9999-12-31"
+              }
+            ]
+          }
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductDocsByProductIDResponse[1]/GetProductDocsByProductIDResult[1]/diffgram[1]/DocumentElement[1]/Product_Docs[*]/PublishDate[1]",
+          "label": "Publish Date",
+          "require": "DATETIME",
+          "when_different": "MISMATCH",
+          "datetime_comparison": {
+            "mode": "UTC_INSTANT",
+            "tolerance_seconds": 1,
+            "naive_timezone": "REJECT",
+            "compatibility_action": "DATA_DRIFT"
+          }
+        }
+      ],
+      "notes": "Rows align by unique, populated docNum. Database IDs may differ but must remain positive. The runner compares timestamps as UTC instants with a one-second tolerance; dateApproved also recognizes the reviewed NOT_SET_MAX_DATE sentinel. Under COMPATIBILITY, larger valid date differences and reviewed unmatched rows remain visible as business-data drift; invalid dates, schema/type differences, and ambiguous keys remain red."
+    },
+    "wsProducts.GetProductCategory": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductCategoryResponse[1]/GetProductCategoryResult[1]/Category[1]",
+          "label": "Category",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductCategoryResponse[1]/GetProductCategoryResult[1]/Pcid[1]",
+          "label": "Category ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "A valid selected category must return a populated category name and positive category ID. Description remains unruled because it may legitimately be optional."
+    },
+    "wsProducts.GetProductPartType": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductPartTypeResponse[1]/GetProductPartTypeResult[1]/PartType[1]",
+          "label": "Part Type",
+          "require": "NON_EMPTY",
+          "when_different": "REVIEW"
+        },
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductPartTypeResponse[1]/GetProductPartTypeResult[1]/pptID[1]",
+          "label": "Part Type ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "A valid selected part type must return a populated name and positive ID. Description remains unruled because it may legitimately be optional."
+    },
+    "wsProducts.GetProductPartTypesAsList": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Product part types",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetProductPartTypesAsListResponse[1]/GetProductPartTypesAsListResult[1]/QTProductPartType[*]",
+          "key_paths": [
+            "PartType[1]",
+            "Description[1]",
+            "Inactive[1]",
+            "IsDeleted[1]",
+            "IsLocked[1]"
+          ],
+          "duplicate_key_policy": "MATCH_OCCURRENCES",
+          "allow_empty_key_values": true,
+          "allow_missing_key_values": true
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductPartTypesAsListResponse[1]/GetProductPartTypesAsListResult[1]/QTProductPartType[*]/pptID[1]",
+          "label": "Part Type ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "The complete non-ID row content is the exact multiset key. Duplicate occurrences may pair because pptID is the only remaining field and is explicitly validated as an environment-local positive integer. Under the COMPATIBILITY profile, reviewed unmatched rows are visible business-data drift; invalid or ambiguous keys remain red."
+    },
+    "wsProducts.GetProductPartTypesAsTable": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_collections": [
+        {
+          "label": "Product part type table rows",
+          "intent": "SHARED_KEYS",
+          "path": "/Envelope[1]/Body[1]/GetProductPartTypesAsTableResponse[1]/GetProductPartTypesAsTableResult[1]/diffgram[1]/DocumentElement[1]/tblProductPartType[*]",
+          "key_paths": [
+            "PartType[1]",
+            "Description[1]",
+            "Inactive[1]",
+            "IsDeleted[1]",
+            "IsLocked[1]"
+          ],
+          "duplicate_key_policy": "MATCH_OCCURRENCES",
+          "allow_empty_key_values": true,
+          "allow_missing_key_values": true
+        }
+      ],
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetProductPartTypesAsTableResponse[1]/GetProductPartTypesAsTableResult[1]/diffgram[1]/DocumentElement[1]/tblProductPartType[*]/pptID[1]",
+          "label": "Part Type ID",
+          "require": "POSITIVE_INTEGER",
+          "when_different": "REVIEW"
+        }
+      ],
+      "notes": "The complete non-ID row content is the exact multiset key. Duplicate occurrences may pair because pptID is the only remaining field and is explicitly validated as an environment-local positive integer. Under the COMPATIBILITY profile, reviewed unmatched rows are visible business-data drift; schema/type differences remain red."
+    },
+    "wsUser.GetUserFullNameByID": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {
+          "path": "/Envelope[1]/Body[1]/GetUserFullNameByIDResponse[1]/GetUserFullNameByIDResult[1]",
+          "label": "User Full Name",
+          "require": "NON_EMPTY",
+          "when_different": "MISMATCH"
+        }
+      ],
+      "notes": "Both lanes must return a populated result, but a returned name and User not Found are not equivalent and remain a critical mismatch."
+    },
+    "wsCustomerFeedback.GetNewCustomerFeedback": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{
+        "path": "/Envelope[1]/Body[1]/GetNewCustomerFeedbackResponse[1]/GetNewCustomerFeedbackResult[1]/Cfbdateentered[1]",
+        "label": "Date Entered",
+        "require": "DATETIME",
+        "when_different": "MISMATCH",
+        "datetime_comparison": {"mode": "UTC_INSTANT", "tolerance_seconds": 1, "naive_timezone": "REJECT", "compatibility_action": "MISMATCH"}
+      }],
+      "notes": "Server-generated timestamps must represent the same UTC instant within one second; timezone-offset formatting alone is not a mismatch."
+    },
+    "wsIsoActions.GetNewCAR": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{
+        "path": "/Envelope[1]/Body[1]/GetNewCARResponse[1]/GetNewCARResult[1]/DateEntered[1]",
+        "label": "Date Entered",
+        "require": "DATETIME",
+        "when_different": "MISMATCH",
+        "datetime_comparison": {"mode": "UTC_INSTANT", "tolerance_seconds": 1, "naive_timezone": "REJECT", "compatibility_action": "MISMATCH"}
+      }],
+      "notes": "Server-generated timestamps must represent the same UTC instant within one second; timezone-offset formatting alone is not a mismatch."
+    },
+    "wsProfile.GetIsoDueDate": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{
+        "path": "/Envelope[1]/Body[1]/GetIsoDueDateResponse[1]/GetIsoDueDateResult[1]",
+        "label": "ISO Due Date",
+        "require": "DATETIME",
+        "when_different": "MISMATCH",
+        "datetime_comparison": {"mode": "UTC_INSTANT", "tolerance_seconds": 1, "naive_timezone": "REJECT", "compatibility_action": "MISMATCH"}
+      }],
+      "notes": "The due date must represent the same UTC instant within one second; timezone-offset formatting alone is not a mismatch."
+    },
+    "wsECN.GetNewECN": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/GetNewECNResponse[1]/GetNewECNResult[1]/Status[1]", "label": "Status", "require": "NON_EMPTY", "when_different": "MISMATCH"}],
+      "notes": "Status is business meaning, not an environment-local identifier. Different populated values remain a mismatch."
+    },
+    "wsProfile.HasDocAppAccess": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/HasDocAppAccessResponse[1]/HasDocAppAccessResult[1]", "label": "Document Application Access", "require": "BOOLEAN", "when_different": "MISMATCH"}],
+      "notes": "Both responses must be valid booleans and must agree because access permission changes behavior."
+    },
+    "wsFMEA.GetNextProcessRev": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/GetNextProcessRevResponse[1]/GetNextProcessRevResult[1]", "label": "Next Process Revision", "require": "INTEGER", "when_different": "WARNING"}],
+      "notes": "The next revision is derived from environment data. Valid differing integers remain visible as reviewed business-data drift."
+    },
+    "wsLogOnSites.GetUserSites": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {"path": "/Envelope[1]/Body[1]/GetUserSitesResponse[1]/GetUserSitesResult[1]/diffgram[1]/NewDataSet[1]/UserLogonSites[*]/lsid[1]", "label": "Logon Site ID", "require": "POSITIVE_INTEGER", "when_different": "REVIEW"},
+        {"path": "/Envelope[1]/Body[1]/GetUserSitesResponse[1]/GetUserSitesResult[1]/diffgram[1]/NewDataSet[1]/UserLogonSites[*]/logonID[1]", "label": "Logon ID", "require": "POSITIVE_INTEGER", "when_different": "REVIEW"}
+      ],
+      "notes": "Database-generated identifiers may differ by environment but must remain positive integers. Other returned site content is not relaxed."
+    },
+    "wsInspections.GetInspectionPlansByInspectionPlanIDs_AsReportBookByteArray": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/GetInspectionPlansByInspectionPlanIDs_AsReportBookByteArrayResponse[1]/GetInspectionPlansByInspectionPlanIDs_AsReportBookByteArrayResult[1]", "label": "Inspection Plan Report", "require": "BASE64", "when_different": "WARNING"}],
+      "notes": "Both lanes must return non-empty valid base64. Different report bytes remain visible as reviewed data/rendering drift; raw evidence is retained."
+    },
+    "wsInspections.GetInspectionsByInspectionIDs_AsReportBookByteArray": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/GetInspectionsByInspectionIDs_AsReportBookByteArrayResponse[1]/GetInspectionsByInspectionIDs_AsReportBookByteArrayResult[1]", "label": "Inspection Report", "require": "BASE64", "when_different": "WARNING"}],
+      "notes": "Both lanes must return non-empty valid base64. Different report bytes remain visible as reviewed data/rendering drift; raw evidence is retained."
+    },
+    "wsInspections.GetNewInspection": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/GetNewInspectionResponse[1]/GetNewInspectionResult[1]/SampleSizeType[1]", "label": "Sample Size Type", "require": "NON_EMPTY", "when_different": "WARNING"}],
+      "notes": "Both lanes must return a populated sample-size type. Different representations remain visible until a reviewed value-alias mapping is supplied."
+    },
+    "wsUDF.GetUdfById": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [
+        {"path": "/Envelope[1]/Body[1]/GetUdfByIdResponse[1]/GetUdfByIdResult[1]/SeriesOrder[1]", "label": "Series Order", "require": "POSITIVE_INTEGER", "when_different": "REVIEW"},
+        {"path": "/Envelope[1]/Body[1]/GetUdfByIdResponse[1]/GetUdfByIdResult[1]/UDFLabel1[1]", "label": "UDF Label", "require": "NON_EMPTY", "when_different": "WARNING"},
+        {"path": "/Envelope[1]/Body[1]/GetUdfByIdResponse[1]/GetUdfByIdResult[1]/UDFType[1]", "label": "UDF Type", "require": "NON_EMPTY", "when_different": "WARNING"}
+      ],
+      "notes": "The selected UDF may be environment-specific. Shape and value validity are checked; differing labels and types remain visible for review."
+    },
+    "wsUtilities.GetQT9DataType": {
+      "approved": true,
+      "response_mode": "VALIDATE",
+      "response_rules": [{"path": "/Envelope[1]/Body[1]/GetQT9DataTypeResponse[1]/GetQT9DataTypeResult[1]", "label": "QT9 Data Type", "require": "NON_EMPTY", "when_different": "WARNING"}],
+      "notes": "Both lanes must return a populated type. Runtime and database type names may use different vocabularies, so differences stay visible pending an explicit reviewed alias."
+    }
+  }
+}
