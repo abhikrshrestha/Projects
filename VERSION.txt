@@ -1,3 +1,0 @@
-QT9 Web Service Compatibility Tool 1.0.0
-Embedded Python 3.13.15 (64-bit)
-Profile: default-soap
