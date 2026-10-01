@@ -1,0 +1,485 @@
+{
+    "schema_version":  1,
+    "product":  "QT9 Web Service Compatibility Tool",
+    "version":  "1.0.0",
+    "architecture":  "windows-x64",
+    "embedded_python":  {
+                            "version":  "3.13.15",
+                            "source_url":  "https://www.python.org/ftp/python/3.13.15/python-3.13.15-embed-amd64.zip",
+                            "archive_sha256":  "d1f04d990aee1253d8569e8e5104e30fa9f5fa830899f14843448872d936a2cf"
+                        },
+    "created_at_utc":  "2026-09-15T19:10:32.9350962Z",
+    "file_count":  94,
+    "files":  [
+                  {
+                      "path":  "config/resolutions.json",
+                      "bytes":  2227,
+                      "sha256":  "0cea28970105f24629c6a759d4f514aae08d965d3c6ed2705c159428e8a0a40e"
+                  },
+                  {
+                      "path":  "config/response_policies.json",
+                      "bytes":  32691,
+                      "sha256":  "90069b496a0e9d28908ef5e023f714fa4b1e5ed4164103aac205ea1f7f14d00c"
+                  },
+                  {
+                      "path":  "config/runner_settings.json",
+                      "bytes":  821,
+                      "sha256":  "3def21cbb5afa1bc99df1e027226f578da92f18e427cae2fddddbd4622db708b"
+                  },
+                  {
+                      "path":  "docs/CLASSIFICATION_GUIDE.md",
+                      "bytes":  1484,
+                      "sha256":  "5b1cee44d371258f196d2c52ceb0fd3819fa2573174c0a5d94bb4bc9d674e9ce"
+                  },
+                  {
+                      "path":  "docs/FILE_STRUCTURE.md",
+                      "bytes":  2323,
+                      "sha256":  "8412a59fe0ea244c4e79e78f9660196d7bc60621a4bd5271a19113b1795ec231"
+                  },
+                  {
+                      "path":  "docs/FUTURE_IMPROVEMENTS.md",
+                      "bytes":  3437,
+                      "sha256":  "2ebc561dd2bb044c7aca3815ae1cbf7faa5a8a64c6a65aa8c413bae205f0217f"
+                  },
+                  {
+                      "path":  "docs/SECURITY_AND_DATA.md",
+                      "bytes":  1894,
+                      "sha256":  "376965453710b2e0a9fce0e92df3f6b42a845bc79a6aaeebaf645ea2e3fe27e5"
+                  },
+                  {
+                      "path":  "docs/USER_GUIDE.md",
+                      "bytes":  5008,
+                      "sha256":  "4f503811229f922a1af5fb39bb425d5714ebca807724499b0a1e44a1c32c1c94"
+                  },
+                  {
+                      "path":  "input/collections/QMS_Plus_Web_Services_Collection.json",
+                      "bytes":  247883,
+                      "sha256":  "dbee4a8224b8a6cea6fb568cb410c05d1c07fd5c5645222701cedb2156ca9e25"
+                  },
+                  {
+                      "path":  "input/value_sets/QMS Two-Site Preset Values.qt9-values.json",
+                      "bytes":  73972,
+                      "sha256":  "faa21630aec6bd1e7c632cab61030f003ffc243dd811ff9c1d75cd90781bb5bd"
+                  },
+                  {
+                      "path":  "profiles/default/modifying_calls.json",
+                      "bytes":  35803,
+                      "sha256":  "047b2af9736e566436cfef466402e869f41e93a0e0e64b197eddf688a6211ebb"
+                  },
+                  {
+                      "path":  "profiles/default/profile.json",
+                      "bytes":  761,
+                      "sha256":  "7c14675ca1946ef70eacc2857da6970b2f6d186b1fe3e01200f72443d705f3b7"
+                  },
+                  {
+                      "path":  "profiles/default/request_variables.json",
+                      "bytes":  1784,
+                      "sha256":  "fb1a0d2d3fc15cbac7895383b16ac975cc2bdade787f24d955f150f294335b87"
+                  },
+                  {
+                      "path":  "qms_compare/__init__.py",
+                      "bytes":  108,
+                      "sha256":  "e9c61630a8946dcba656ff99dcee14fa366c32ad6f454c16f760d6734121c28b"
+                  },
+                  {
+                      "path":  "qms_compare/__main__.py",
+                      "bytes":  81,
+                      "sha256":  "2cdd23d4f5cd6c3b3e4cb690ad16d560637767b9ca5b2a3cf129fcc0a5ebc82b"
+                  },
+                  {
+                      "path":  "qms_compare/catalog_sqlserver.py",
+                      "bytes":  54947,
+                      "sha256":  "0af7b33924d347a2756be5edab3963a1e94baacfcfd7a4df709ab0e8f326c2f4"
+                  },
+                  {
+                      "path":  "qms_compare/cli.py",
+                      "bytes":  35069,
+                      "sha256":  "850da2fef15ce34d8a74e4d082e67abaa74289fe31ea8a0008312c4e94dc37b7"
+                  },
+                  {
+                      "path":  "qms_compare/collection_alignment.py",
+                      "bytes":  27763,
+                      "sha256":  "a9af41478194c5c26bf9edf96369743804a972e23b7e9ee438ebe313ee1c4141"
+                  },
+                  {
+                      "path":  "qms_compare/config.py",
+                      "bytes":  11582,
+                      "sha256":  "c7341d44fd6bb73db436021feb19a3dcf0a3a1c20ae2e053fac7646447128456"
+                  },
+                  {
+                      "path":  "qms_compare/contracts.py",
+                      "bytes":  15290,
+                      "sha256":  "9ff7cbd77c24e06c761253b0960b3f65b80c3ed9356d6b8797f13c25b9f5d404"
+                  },
+                  {
+                      "path":  "qms_compare/database_schema.py",
+                      "bytes":  17405,
+                      "sha256":  "aff5a61adaa0086d920d4d4b9625be6ea24e9ed833c0ede61ac2eade0201039e"
+                  },
+                  {
+                      "path":  "qms_compare/evidence_bundle.py",
+                      "bytes":  47045,
+                      "sha256":  "63de8cee5ed7cc893814df1108c066a4cdd6ff97d0a17d99f8b20329a9da06e6"
+                  },
+                  {
+                      "path":  "qms_compare/evidence_compat.py",
+                      "bytes":  4737,
+                      "sha256":  "a0c1db7fbad6df72c2b595f26581bdbade3ddb1cfcf8d2e8c1cca97dc95a6091"
+                  },
+                  {
+                      "path":  "qms_compare/fixtures.py",
+                      "bytes":  39043,
+                      "sha256":  "4d08887bb2b7e64b0b6fb8e3229b67694e322f0f2c9c8e54e3d6c10276c4fa79"
+                  },
+                  {
+                      "path":  "qms_compare/gui_launcher.py",
+                      "bytes":  2004,
+                      "sha256":  "5bb15a9b3191199fa4b01b6872874459c48f7552bff965125b4bdc163955cdf3"
+                  },
+                  {
+                      "path":  "qms_compare/guided.py",
+                      "bytes":  27648,
+                      "sha256":  "338b2be84bc66f1eb08b9a9635628cdafc78e1820df3401105b08b1d0a110b99"
+                  },
+                  {
+                      "path":  "qms_compare/guided_all_calls.py",
+                      "bytes":  7418,
+                      "sha256":  "9e50ace1d0b00a4bfd6983432e44257448b10b403789c009dc415a2424aa4146"
+                  },
+                  {
+                      "path":  "qms_compare/guided_defaults.py",
+                      "bytes":  14018,
+                      "sha256":  "74bde3afe8672df529f311a5c818e95cf7a5a5f03d80c2d4cdb525ecae83b654"
+                  },
+                  {
+                      "path":  "qms_compare/large_response.py",
+                      "bytes":  35798,
+                      "sha256":  "082a59086d06eaa56b7eb14b6fba337f553013ee4633012b4539373c612184f3"
+                  },
+                  {
+                      "path":  "qms_compare/manifest.py",
+                      "bytes":  65456,
+                      "sha256":  "23bea8f59c84ef00a4eb59a41c3a04c652d4fc466a6f83bf18689ab95f6be7f9"
+                  },
+                  {
+                      "path":  "qms_compare/modifying_calls.py",
+                      "bytes":  11626,
+                      "sha256":  "73cf8612d46a395deb0c30dd86453a5f10a723168f4993e4a22c3427e6533291"
+                  },
+                  {
+                      "path":  "qms_compare/operation_categories.py",
+                      "bytes":  1289,
+                      "sha256":  "086549840c51db2ff4481cd1c7a8795ec0fbf77b5407fb25439b9add4113f06a"
+                  },
+                  {
+                      "path":  "qms_compare/portable_evidence.py",
+                      "bytes":  19890,
+                      "sha256":  "3296f4f926aa339aa4a572501c04b80d85c3976f042390695a3eacaaaba441c5"
+                  },
+                  {
+                      "path":  "qms_compare/profiles.py",
+                      "bytes":  15413,
+                      "sha256":  "3fa45576b461e92d104b5ae97aabcdb3209e9d237d2bbd75975c6303ee4bfe4d"
+                  },
+                  {
+                      "path":  "qms_compare/report_ui.py",
+                      "bytes":  21623,
+                      "sha256":  "bbb7bee7f4f115f70e51cc5c54d6926f81deedd6ff4be230e8b9b1ecdd52bead"
+                  },
+                  {
+                      "path":  "qms_compare/reporting.py",
+                      "bytes":  86355,
+                      "sha256":  "11ccf097eb8956a9b459f62cbdf8609ce6f3c4395e1b985dc06fc028073c75d5"
+                  },
+                  {
+                      "path":  "qms_compare/response_view.py",
+                      "bytes":  89699,
+                      "sha256":  "2f39f167ff2b0fc2494666de8c98c8b1b4fd4496a3d5c16462ed31f51a54c37b"
+                  },
+                  {
+                      "path":  "qms_compare/runner.py",
+                      "bytes":  135523,
+                      "sha256":  "d5c5395f07c2ac6b7a44b759ab97a21c49c184cb86c59125e3aecf40b8c901df"
+                  },
+                  {
+                      "path":  "qms_compare/schema_compatibility.py",
+                      "bytes":  5860,
+                      "sha256":  "d159b291e0069ca04f6bf6912c5b86e34d614ad9ab5d6c6a5d94913b310a5bb2"
+                  },
+                  {
+                      "path":  "qms_compare/settings.py",
+                      "bytes":  12431,
+                      "sha256":  "1aca13e7256c07caa919b1412de1cdb410aac2818b4e86e891c8831b68d5f4ca"
+                  },
+                  {
+                      "path":  "qms_compare/source_csharp.py",
+                      "bytes":  54426,
+                      "sha256":  "5e4ab52f4786fb2be893c5d03c1bb943265ebad9ef92082b47550da3238101ab"
+                  },
+                  {
+                      "path":  "qms_compare/transport.py",
+                      "bytes":  20010,
+                      "sha256":  "4a8aa29a9b87597138f5ad62cc67c283d2860615d54a7f5095fb7fcfc0efa7f5"
+                  },
+                  {
+                      "path":  "qms_compare/ui_evidence.py",
+                      "bytes":  11480,
+                      "sha256":  "f9a844b4f9df14c339f052fc55c5273e29f5b6837e3d90a7d2ceda4dcfab0dc2"
+                  },
+                  {
+                      "path":  "qms_compare/ui_execution.py",
+                      "bytes":  49503,
+                      "sha256":  "12ced62831b797d31b3333b3763dd2f9d607c5babd2f3e6324a836437fa8dc74"
+                  },
+                  {
+                      "path":  "qms_compare/ui_run_plan.py",
+                      "bytes":  9585,
+                      "sha256":  "d8acc5ba9bb39997957d5f3c7c4198a3885ce431e11adecf55c8eff034d660b0"
+                  },
+                  {
+                      "path":  "qms_compare/ui_server.py",
+                      "bytes":  29791,
+                      "sha256":  "f10f851887c984e133b6b397a3959d65b27cb862db5d8694052947960e24572f"
+                  },
+                  {
+                      "path":  "qms_compare/ui_setup.py",
+                      "bytes":  13392,
+                      "sha256":  "516decab2acb4622ff48ddade203261d434232da48f30650f1d049e8772ebee1"
+                  },
+                  {
+                      "path":  "qms_compare/ui_static/app.css",
+                      "bytes":  52482,
+                      "sha256":  "d18d6843d18bb52fa02e5dc5793018ca9a72fadfff0ef65348c5a3cade040a18"
+                  },
+                  {
+                      "path":  "qms_compare/ui_static/app.js",
+                      "bytes":  101074,
+                      "sha256":  "e2ac1925ca6f6b3bd046c4ff2f526d9249027665942025b48786508ecce32909"
+                  },
+                  {
+                      "path":  "qms_compare/ui_static/index.html",
+                      "bytes":  35583,
+                      "sha256":  "a9941a8e87be2908f5222f73b6fda0764774901b153027c275191312408516f0"
+                  },
+                  {
+                      "path":  "qms_compare/ui_static/value_sets.js",
+                      "bytes":  6762,
+                      "sha256":  "04e66d0f50b959a9a69cb9c07ce575ebeeadb13ad164bacd30a7e182fa3af1df"
+                  },
+                  {
+                      "path":  "qms_compare/ui_test_preset.py",
+                      "bytes":  5048,
+                      "sha256":  "43e36fbb1aede2e8e80ea3c7420a0d6b9c941e3eae6af15dbc883a9dc1111bca"
+                  },
+                  {
+                      "path":  "qms_compare/ui_test_values.py",
+                      "bytes":  42220,
+                      "sha256":  "6a76d5c7a1b1a082b95a0a9ee534724cc26c5487038eba5bfaf10028ccd393fa"
+                  },
+                  {
+                      "path":  "qms_compare/wsdl.py",
+                      "bytes":  37460,
+                      "sha256":  "fcbc2cd81acdc77f08d00fcb6c712597e4778c4322cd5672a113a188bba2cbd7"
+                  },
+                  {
+                      "path":  "qms_compare/xml_compare.py",
+                      "bytes":  38508,
+                      "sha256":  "406aa696e8607cab442f0f667de8658f0f981d12bbdead9424331d780c0ba512"
+                  },
+                  {
+                      "path":  "README - Start Here.md",
+                      "bytes":  3076,
+                      "sha256":  "34b6381c8611c4a55b7cca40b0104190c7d0489ec3056498f02a943f0d30b0d9"
+                  },
+                  {
+                      "path":  "runtime/_asyncio.pyd",
+                      "bytes":  72928,
+                      "sha256":  "6941e2aeed3aad1a4658774ecb60309170066a040c2118a5efd16458ac3bed00"
+                  },
+                  {
+                      "path":  "runtime/_bz2.pyd",
+                      "bytes":  86752,
+                      "sha256":  "261545bd24f15a783fc0c82568b766a4ab569dde14507a81701cccf5293e6e54"
+                  },
+                  {
+                      "path":  "runtime/_ctypes.pyd",
+                      "bytes":  134368,
+                      "sha256":  "9d6dccb4cd84a44a107f9b06b91c0a44e85766d9bf4debb6abbde8fda7494c2c"
+                  },
+                  {
+                      "path":  "runtime/_decimal.pyd",
+                      "bytes":  286944,
+                      "sha256":  "1e6a5707163d3c103e0eb4695eefedbea4b855fb227c61cc265b168970d6c6f0"
+                  },
+                  {
+                      "path":  "runtime/_elementtree.pyd",
+                      "bytes":  135904,
+                      "sha256":  "26c5c2f3f2b8dac1499f07a50d7afd14315c20a6a541abbe4e306bcd9df404f1"
+                  },
+                  {
+                      "path":  "runtime/_hashlib.pyd",
+                      "bytes":  69344,
+                      "sha256":  "79a26289aef0d92545a082507c7021f10e219621d137cb726c4d0fbbfd4b46ae"
+                  },
+                  {
+                      "path":  "runtime/_lzma.pyd",
+                      "bytes":  159456,
+                      "sha256":  "ee224aacf5cf9c9974a1b842aac8d89d5d9b7eeebbf4d76619ae0ce4da8ecd96"
+                  },
+                  {
+                      "path":  "runtime/_multiprocessing.pyd",
+                      "bytes":  38112,
+                      "sha256":  "db19972cf033b598f5826f8219bc2608412b84061d294f5972b43c2ab95f7af5"
+                  },
+                  {
+                      "path":  "runtime/_overlapped.pyd",
+                      "bytes":  57568,
+                      "sha256":  "9db08b5449e18088754ce57e315657d00b46575e0151cd379efef8847488a606"
+                  },
+                  {
+                      "path":  "runtime/_queue.pyd",
+                      "bytes":  35552,
+                      "sha256":  "4404c2569443ffb54e7cfffdca8ddf58c9a609175305970728ec12bc1c147b43"
+                  },
+                  {
+                      "path":  "runtime/_socket.pyd",
+                      "bytes":  86752,
+                      "sha256":  "ccbd0f83df3784da08147b8e8765e28c978de28b5c0eddcfba5567b59d43fef9"
+                  },
+                  {
+                      "path":  "runtime/_sqlite3.pyd",
+                      "bytes":  131296,
+                      "sha256":  "4c5fa9341a76ac525fd36e2cb23260934ad9b9f6825725ff139b26c8dc72436d"
+                  },
+                  {
+                      "path":  "runtime/_ssl.pyd",
+                      "bytes":  181984,
+                      "sha256":  "8d2f51fa1dc929073a2ad8d1c7c0c911e8f695870dcf4dda2846f4b75a7f77fb"
+                  },
+                  {
+                      "path":  "runtime/_uuid.pyd",
+                      "bytes":  27872,
+                      "sha256":  "b93832742a2348d6659fd62e8a8aff061594693fc537da74c7d2d1cdf83a8475"
+                  },
+                  {
+                      "path":  "runtime/_wmi.pyd",
+                      "bytes":  39648,
+                      "sha256":  "db45362354fd4965329cb14bd974e60b26525045d09fb4fdfb1674a93b79d60c"
+                  },
+                  {
+                      "path":  "runtime/_zoneinfo.pyd",
+                      "bytes":  50912,
+                      "sha256":  "6650db91accc05e625d3c5d8a40e15127a040ea1135e40e875fd78d8a7665a84"
+                  },
+                  {
+                      "path":  "runtime/libcrypto-3.dll",
+                      "bytes":  5238520,
+                      "sha256":  "09499e186cf0e434ffa17ad153aa9a66d6048c54a2c03b823e2a06c49d9affe4"
+                  },
+                  {
+                      "path":  "runtime/libffi-8.dll",
+                      "bytes":  39696,
+                      "sha256":  "eff52743773eb550fcc6ce3efc37c85724502233b6b002a35496d828bd7b280a"
+                  },
+                  {
+                      "path":  "runtime/libssl-3.dll",
+                      "bytes":  794872,
+                      "sha256":  "28c395290279fa4f4f54a57b85cd66d853895f925fefb8f6fdebc0d8b1cdd07c"
+                  },
+                  {
+                      "path":  "runtime/LICENSE.txt",
+                      "bytes":  33861,
+                      "sha256":  "62bec384df47b0328307db41455ff6ea2559e5546b394ac69148561b21703120"
+                  },
+                  {
+                      "path":  "runtime/pyexpat.pyd",
+                      "bytes":  221920,
+                      "sha256":  "b9c9c5a9f52af559a7eb4e8ddfd60558185bfc7794f32840bed1747d1ec9026a"
+                  },
+                  {
+                      "path":  "runtime/python.cat",
+                      "bytes":  578418,
+                      "sha256":  "49eb507453b924ff70c19c8b8940b033ac5865f11cdd637447024725ed105bef"
+                  },
+                  {
+                      "path":  "runtime/python.exe",
+                      "bytes":  105696,
+                      "sha256":  "85b71d8c6ec1905935f74be0c9869aae198d00e98f39df699ec66f9c5a84cecd"
+                  },
+                  {
+                      "path":  "runtime/python3.dll",
+                      "bytes":  72416,
+                      "sha256":  "76e7fd69a01081726308317d6e502721c2ba6792b48880dc1ef649c755788db7"
+                  },
+                  {
+                      "path":  "runtime/python313._pth",
+                      "bytes":  22,
+                      "sha256":  "5247dd541395e7e8964d881952241fd7c9da8b7d422d514dc8891a892be4e108"
+                  },
+                  {
+                      "path":  "runtime/python313.dll",
+                      "bytes":  6135008,
+                      "sha256":  "e820bf024efd2b56bb2b82791e6b6ddc7303f070f8e72cba7637482a8a906238"
+                  },
+                  {
+                      "path":  "runtime/python313.zip",
+                      "bytes":  3825631,
+                      "sha256":  "1916abd946d2044ec8c04c3319f96c8415d5b6fce01e125622827f2b7756cbab"
+                  },
+                  {
+                      "path":  "runtime/pythonw.exe",
+                      "bytes":  104160,
+                      "sha256":  "146c01e5448a084ff15d63113a790b9aa75250baf862d984c51dd695ac4775bc"
+                  },
+                  {
+                      "path":  "runtime/select.pyd",
+                      "bytes":  32992,
+                      "sha256":  "024f955349fe46cf1bb2c22c6b57fcf38cf5755d46166fbf63e7e5b92433b111"
+                  },
+                  {
+                      "path":  "runtime/sqlite3.dll",
+                      "bytes":  1584864,
+                      "sha256":  "c6812eaf0f8605df273b9bf7e359b83fd65038ecc66455c3f7a933768cb92f3f"
+                  },
+                  {
+                      "path":  "runtime/unicodedata.pyd",
+                      "bytes":  712928,
+                      "sha256":  "111e0fdfeef9887c04f6ebf1972ce1ccbec55b226012e4a288c2d4a0b17b216b"
+                  },
+                  {
+                      "path":  "runtime/vcruntime140.dll",
+                      "bytes":  178616,
+                      "sha256":  "d1f4225df2cd877dbf130d5668a021dce3f94118455ff5ec952061c30afc9ce7"
+                  },
+                  {
+                      "path":  "runtime/vcruntime140_1.dll",
+                      "bytes":  50112,
+                      "sha256":  "a7146c08f89fe5b04541ab507cdb59ff7b44534d4ba3c668a426c6450a03434e"
+                  },
+                  {
+                      "path":  "runtime/winsound.pyd",
+                      "bytes":  31968,
+                      "sha256":  "b078b7f5c53efd3c4201b63fa34a17c6747142e37298293f52c3a9ad643e69e2"
+                  },
+                  {
+                      "path":  "Start Compatibility Tool.vbs",
+                      "bytes":  1537,
+                      "sha256":  "b34707e8330de22d7419e2455c938bcc9991f0e4dcf8da2475c665b691d8773e"
+                  },
+                  {
+                      "path":  "Start With Diagnostics.cmd",
+                      "bytes":  745,
+                      "sha256":  "fd58332ee868af6102e305519acaa1d93b3f47b39dafdc655daf082242b43be2"
+                  },
+                  {
+                      "path":  "THIRD_PARTY_NOTICES.txt",
+                      "bytes":  270,
+                      "sha256":  "380354e6f6bf215fbe178904a7978445bc4d48be2da7e91b93ef6bfc0f70b7d3"
+                  },
+                  {
+                      "path":  "VERSION.txt",
+                      "bytes":  99,
+                      "sha256":  "1d63fefbb796fbdf7cf035bb5dec1da4da730678561c82e959fe0a75ddd52806"
+                  }
+              ]
+}
